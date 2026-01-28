@@ -3,6 +3,7 @@ name: mongo
 project_files:
   - commands/mongo/mongosh
   - commands/host/mongo-express
+  - web-build/Dockerfile.mongo
   - config.mongo.yaml
   - docker-compose.mongo.yaml
   - docker-compose.mongo_norouter.yaml

@@ -73,7 +73,7 @@ services:
 To change the Docker image:
 
 ```bash
-ddev dotenv set .ddev/.env.mongo --mongo-docker-image=mongo:5-focal
+ddev dotenv set .ddev/.env.mongo --mongo-docker-image=mongo:latest
 ddev add-on get ddev/ddev-mongo
 ddev restart
 ```
@@ -84,7 +84,7 @@ All customization options (use with caution):
 
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
-| `MONGO_DOCKER_IMAGE` | `--mongo-docker-image` | `mongo:5-focal` |
+| `MONGO_DOCKER_IMAGE` | `--mongo-docker-image` | `mongo:latest` |
 | `MONGO_EXPRESS_DOCKER_IMAGE` | `--mongo-express-docker-image` | `mongo-express:1.0` |
 
 ## Credits

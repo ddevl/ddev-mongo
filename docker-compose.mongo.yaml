@@ -2,7 +2,7 @@
 services:
   mongo:
     container_name: ddev-${DDEV_SITENAME}-mongo
-    image: ${MONGO_DOCKER_IMAGE:-mongo:5-focal}
+    image: ${MONGO_DOCKER_IMAGE:-mongo:latest}
     volumes:
       - type: "volume"
         source: mongo
@@ -28,7 +28,7 @@ services:
       # See https://github.com/docker-library/docs/tree/master/mongo#mongo_initdb_database
       # - MONGO_INITDB_DATABASE=db
     healthcheck:
-      test: ["CMD-SHELL", "mongo --eval 'db.runCommand(\"ping\").ok' localhost:27017/test --quiet"]
+      test: ["CMD-SHELL", "M=$(command -v mongosh || command -v mongo) && $$M --eval 'db.runCommand(\"ping\").ok' localhost:27017/test --quiet"]
       timeout: 60s
 
   mongo-express:

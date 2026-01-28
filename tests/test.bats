@@ -47,6 +47,14 @@ health_checks() {
   assert_success
   assert_output --partial '"ok":1'
 
+  # Check mongo CLI utils availability in the "web" container
+  run ddev exec "mongosh 'mongodb://db:db@mongo:27017/test?authSource=admin' --quiet --eval 'JSON.stringify(db.getUsers())'"
+  assert_success
+  assert_output --partial '"ok":1'
+  run ddev exec 'mongodump --version'
+  assert_success
+  assert_output --partial 'mongodump version:'
+
   # Start mongo-express profile
   DDEV_DEBUG=true run ddev mongo-express
   assert_success
