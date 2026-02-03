@@ -23,10 +23,11 @@ services:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: ${DDEV_APPROOT}
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=db
-      - MONGO_INITDB_ROOT_PASSWORD=db
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME:-db}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD:-db}
+      # The database name to create on the first start.
       # See https://github.com/docker-library/docs/tree/master/mongo#mongo_initdb_database
-      # - MONGO_INITDB_DATABASE=db
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE:-db}
     healthcheck:
       test: ["CMD-SHELL", "M=$(command -v mongosh || command -v mongo) && $$M --eval 'db.runCommand(\"ping\").ok' localhost:27017/test --quiet"]
       timeout: 60s
